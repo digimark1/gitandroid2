@@ -519,11 +519,11 @@
                       <div id="pick_div_im">
                            <div id="shipper_table">
                                 <div id="shipper_take_picture" onClick="shipper_take_pic()"><img width="100%" src="css/take_picture.png" /></div>
-                                <div id="shipper_add_signature" onClick="shipper_add_sig()"><a href="#choose_signature_shipper" data-rel="popup" data-position-to="window"><img width="100%" src="css/add_signature.png" /></a></div>
-                                <div id="shipper_wrapper">
-                                	<div id="expand_shipper"><b>&nbsp; - </b>Shipper BOL</div>
-                                	<div id="shipper_photos"></div>
-                                 </div>
+                                <!-- <div id="shipper_add_signature" onClick="shipper_add_sig()"><a href="#choose_signature_shipper" data-rel="popup" data-position-to="window"><img width="100%" src="css/add_signature.png" /></a></div> -->
+                               <!-- <div id="shipper_wrapper">
+                                	 <div id="expand_shipper"><b>&nbsp; - </b>Shipper BOL</div>
+                                	<div id="shipper_photos"></div> 
+                                 </div>-->
                            </div>
                           <!--<a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><img id="pick_map_icon" src="css/maps-icon1.png"/></a> -->
                       </div>
@@ -537,11 +537,11 @@
                        <div id="drop_div_text">
                        <div id="consignee_table">
                              <div id="consignee_take_picture" onClick="consignee_take_pic()"><img width="100%" src="css/take_picture.png" /></div>
-                             <div id="consignee_add_signature" onClick="consignee_add_sig()"><a href="#choose_signature_consignee" data-rel="popup" data-position-to="window"><img width="100%" src="css/add_signature.png" /></a></div>
-                             <div id="consignee_wrapper">
+                             <!--<div id="consignee_add_signature" onClick="consignee_add_sig()"><a href="#choose_signature_consignee" data-rel="popup" data-position-to="window"><img width="100%" src="css/add_signature.png" /></a></div>-->
+                             <!--<div id="consignee_wrapper">
                                  <div id="expand_consignee"><b>&nbsp; - </b>Consignee BOL</div>
                                  <div id="consignee_photos"></div>
-                             </div>
+                             </div>-->
                        </div>
                           <!--<a style="color:red" onClick="location.href=localStorage.drop_address" target="_system"><img id="drop_map_icon" src="css/maps-icon2.png"/></a> -->
                       </div>
@@ -601,38 +601,14 @@ function consignee_add_sig(){
 //---- SHIPPER SAVING DATA , SIGNATURE MARK, DATE AND PAGES NUMBER ------ //
 
 function shipper_take_pic(){
-//--- JUST TAKING PICTURE ----//
-	navigator.camera.getPicture(onSuccess1, onFail1, { 
-								quality: 40,
-								targetWidth: 1650,
-								targetHeight: 2200,
-								destinationType: Camera.DestinationType.FILE_URI
-							});
-				function onSuccess1(imageURI) {
 					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
-					$('#cam_picture').html(imageURI);
-					//--- SAVE PICTURE TAKEN -----//
-						var imageURI = $('#cam_picture').html();
-						var options = new FileUploadOptions();
-						options.fileKey = "file";
-						options.fileName = ''+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'_sp-'+localStorage.shipper_counter+'.jpg';
-						//($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
-						options.mimeType = "image/jpeg";
-						options.params = {
-												firstname: 'first',
-												lastname: 'second',
-												workplace: 'workplace'
-											}
-						var ft = new FileTransfer();
-						ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win1, fail1, options);
+	
 						//alert('after upload');
                     //--- END OF - SAVE PICTURE TAKEN -----//
 										// ---- WIN - FAIL ----- SHIPPER save_picture.php --- //
-										function win1(r) {
-											//alert('win');
 													  //$.mobile.loading("hide");
 													  $('#cam_picture').html('');
-													  var d = new Date()
+													  var d = new Date();
 													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+('0'+(d.getMonth()+1)).slice(-2)+'/'+('0'+(d.getDate())).slice(-2)+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 													  //alert('first group');
 													  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
@@ -699,19 +675,7 @@ function shipper_take_pic(){
 															  console.log(data);
 															  }
 														  });
-												}
-											
-										function fail1(error) {
-													alert("A1n error has occurred: Code = " + error.code);
-													console.log("upload error source " + error.source);
-													console.log("upload error target " + error.target);
-												}
-										// ---- END OF WIN - FAIL ----- SHIPPER save_picture.php --- //
-				       }
-				function onFail1(message) {
-								// WHEN THE USER PRESS CANCEL --- not taking a photo.
-					     $("#image_source").attr('src',localStorage.image_name);
-					    }
+
 
 //--- END OF JUST TAKING PICTURE ----//
 
