@@ -549,13 +549,14 @@
                 </div>
                 
                 <div id="aditional_documents">
-                 <div id="documents_title">ADITIONAL DOCUMENTS</div>
+                 <div id="documents_title">DOCUMENTS</div>
                      <div id="document_options">
                      	<div id="div_document_name">
                             <!--<select data-native-menu="false" data-theme="a" data-overlay-theme="a" tabindex="-1">-->
                             <select data-role="" id="select_new_document" data-native-menu="false" data-theme="a" data-overlay-theme="b">
                             	<option data-placeholder="false" value="0">Select a Document</option>
                                 <option value="Bol">BOL</option>
+                                 <option value="Pod">POD</option>
                                 <option value="Invoice">Invoice</option>
                                 <option value="Manifest">Manifest</option>
                                 <option value="Lumper Fee">Lumper fee</option>
@@ -658,8 +659,6 @@ function shipper_take_pic(){
 															  console.log(data);
 															  }
 														  });
-
-
 //--- END OF JUST TAKING PICTURE ----//
 
 	};
@@ -2169,16 +2168,20 @@ function update_shipments_load(load_id){
 											$("#bol_number_hid").html(data[k].bol_number);
 											if (data[k].origin_sign != 0){
 												       $('#shipper_take_picture').html('<img width="100%" src="css/picked_up.png" />');
+													   $('#shipper_take_picture').attr('onClick','');
 													  $('#consignee_take_picture').html('<img width="100%" src="css/for_delivery_active.png" />');
 												}else{
 												      $('#shipper_take_picture').html('<img width="100%" src="css/for_pickup.png" />');
+													  $('#shipper_take_picture').attr('onClick','shipper_take_pic()');
 													  $('#consignee_take_picture').html('<img width="100%" src="css/for_delivery.png" />');
 													}
 											if(data[k].destination_sign != 0){
 												  $('#consignee_take_picture').html('<img width="100%" src="css/delivered.png" />');
+												  $('#consignee_take_picture').attr('onClick','');
 												    }
 											if(data[k].origin_sign != 0 && data[i].destination_sign != 1){
 												  $('#consignee_take_picture').html('<img width="100%" src="css/for_delivery_active.png" />');
+												  $('#consignee_take_picture').attr('onClick','consignee_take_pic()');
 												}
 									
 									}
