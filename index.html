@@ -608,7 +608,7 @@ function shipper_take_pic(){
 					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 																 $.ajax({
 																	  type: 'POST',
-																	  async: false,
+																	  async: true,
 																	  dataType:'json',
 																	  url: ''+localStorage.base_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
 																	  success: function(data){
@@ -623,6 +623,34 @@ function shipper_take_pic(){
 																					url: ''+localStorage.save_url+'/message_pic_new.php',
 																					success: function(data){
 																						//alert('callcheck for pic 1');
+																						 $.ajax({
+																								  type: 'POST',
+																								  async: true,
+																								  data:{bol_number:localStorage.bol_number},
+																								  url: ''+localStorage.save_url+'/shipper_page_number_new.php',
+																								  success: function(data){
+																									  navigator.notification.alert(
+																																  'The truck is loaded.',
+																																  alertCallback,
+																																  'Smith TracknGo',
+																																  'Ok');
+																							    	 	$('#shipper_take_picture').html('<img width="100%" src="css/picked_up.png" />');
+																							     		$('#shipper_take_picture').attr('onClick','');
+																							     		$('#consignee_take_picture').html('<img width="100%" src="css/for_delivery_active.png" />');
+																										$.mobile.loading("hide");
+																									  console.log(data);
+																									  },
+																								  error: function(data){
+																									  navigator.notification.alert(
+																																  'There was a problem, Try again',
+																																  alertCallback,
+																																  'Smith TracknGo',
+																																  'Ok');
+																										$.mobile.loading("hide");
+																									  console.log(data);
+																									  }
+																								  });
+														  //---------
 																						},
 																					error: function(data){
 																						//alert('error callcheck for pic 1');
@@ -637,33 +665,7 @@ function shipper_take_pic(){
 																		  }
 																 });
 														//----------------------------------------------------------------------------
-													   $.ajax({
-														  type: 'POST',
-														  async: false,
-														  data:{bol_number:localStorage.bol_number},
-														  url: ''+localStorage.save_url+'/shipper_page_number_new.php',
-														  success: function(data){
-															  navigator.notification.alert(
-																						  'The truck is loaded.',
-																						  alertCallback,
-																						  'Smith TracknGo',
-																						  'Ok');
-												       $('#shipper_take_picture').html('<img width="100%" src="css/picked_up.png" />');
-													   $('#shipper_take_picture').attr('onClick','');
-													  $('#consignee_take_picture').html('<img width="100%" src="css/for_delivery_active.png" />');
-																$.mobile.loading("hide");
-															  console.log(data);
-															  },
-														  error: function(data){
-															  navigator.notification.alert(
-																						  'There was a problem, Try again',
-																						  alertCallback,
-																						  'Smith TracknGo',
-																						  'Ok');
-																$.mobile.loading("hide");
-															  console.log(data);
-															  }
-														  });
+													  
 //--- END OF JUST TAKING PICTURE ----//
 
 	};
@@ -673,108 +675,110 @@ function shipper_take_pic(){
 
 function consignee_take_pic(){
 					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;"  />'});
-											  //---- POP UP SHIPPER -----/
-											  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
-											   //----------CHECK if there is already a signature to not send the callcheck ------
-																 $.ajax({
-																	  type: 'POST',
-																	  async: false,
-																	  dataType:'json',
-																	  url: ''+localStorage.base_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
-																	  success: function(data){
-																		  if(data[0].destination_sign == 1){
-																			   //alert('test 3');
-																			  }else{
-																				  //alert('test 4');
-																				  // ------------Message to signature saving 
-																				$.ajax({
-																					type: 'POST',
-																					data: {load_id:localStorage.load_id_bol, sig_id: 2, bol_number:localStorage.bol_number, user_id: localStorage.user_id, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
-																					url: ''+localStorage.save_url+'/message_pic_new.php',
-																					success: function(data){
-																						//alert('callcheck for pic 2');
-																						},
-																					error: function(data){
-																						//alert('error callcheck for pic 2');
-																						},
-																					})
-																			// -----------End of message to signature saving
-																				  }
-																		  //$.mobile.loading("hide");  
-																		  },
-																	  error: function(data){
-																		  //$.mobile.loading("hide");
-																		  }
-																 });
-														//----------------------------------------------------------------------------
-												$.ajax({
-												  type: 'POST',
-												  async: false,
-												  data:{bol_number:localStorage.bol_number},
-												  url: ''+localStorage.save_url+'/consignee_page_number_new.php',
-												  success: function(data){
-													   navigator.notification.alert(
-																				  'The load has been delivered.',
-																				  alertCallback,
-																				  'Smith TracknGo',
-																				  'Ok');
-												  $('#consignee_take_picture').html('<img width="100%" src="css/delivered.png" />');
-												  $('#consignee_take_picture').attr('onClick','');
-													$.mobile.loading("hide");
-													//-------------------------
-																   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
-																   var unsigned_shipments2 = 0;
-																			 $.ajax({
-																				 type: 'POST',
-																				 async:false,
-																				 dataType: 'json',
-																				 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+localStorage.load_id_bol,
-																				 success: function(data){
-																						console.log(data);
-																						for(i=0;i<data.length;i++){
-																							if(data[i].destination_sign != 1){
-																								 unsigned_shipments2++;
+				  //---- POP UP SHIPPER -----/
+				  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
+				   //----------CHECK if there is already a signature to not send the callcheck ------
+									 $.ajax({
+										  type: 'POST',
+										  async: true,
+										  dataType:'json',
+										  url: ''+localStorage.base_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
+										  success: function(data){
+											  if(data[0].destination_sign == 1){
+												   //alert('test 3');
+												  }else{
+													  //alert('test 4');
+													  // ------------Message to signature saving 
+													$.ajax({
+														type: 'POST',
+														data: {load_id:localStorage.load_id_bol, sig_id: 2, bol_number:localStorage.bol_number, user_id: localStorage.user_id, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
+														url: ''+localStorage.save_url+'/message_pic_new.php',
+														success: function(data){
+															//alert('callcheck for pic 2');
+																$.ajax({
+																  type: 'POST',
+																  async: true,
+																  data:{bol_number:localStorage.bol_number},
+																  url: ''+localStorage.save_url+'/consignee_page_number_new.php',
+																  success: function(data){
+																	   navigator.notification.alert(
+																								  'The load has been delivered.',
+																								  alertCallback,
+																								  'Smith TracknGo',
+																								  'Ok');
+																  $('#consignee_take_picture').html('<img width="100%" src="css/delivered.png" />');
+																  $('#consignee_take_picture').attr('onClick','');
+																	$.mobile.loading("hide");
+																	//-------------------------
+																				   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
+																				   var unsigned_shipments2 = 0;
+																							 $.ajax({
+																								 type: 'POST',
+																								 async:true,
+																								 dataType: 'json',
+																								 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+localStorage.load_id_bol,
+																								 success: function(data){
+																										console.log(data);
+																										for(i=0;i<data.length;i++){
+																											if(data[i].destination_sign != 1){
+																												 unsigned_shipments2++;
+																												}else{
+																													}
+																											}
+																									},
+																								error: function(data){
+																									console.log(data);
+																									navigator.notification.alert(
+																																  'There was an error with active loads 12',
+																																  alertCallback,
+																																  'Smith TracknGo',
+																																  'Ok');
+																								}})						
+																							// Reset location traces sending //
+																							if(unsigned_shipments2 >= 1){
+																								//alert('unsigned_shipments >=1');
 																								}else{
-																									}
-																							}
-																					},
-																				error: function(data){
-																					console.log(data);
-																					navigator.notification.alert(
-																												  'There was an error with active loads 12',
-																												  alertCallback,
-																												  'Smith TracknGo',
-																												  'Ok');
-																				}})						
-																			// Reset location traces sending //
-																			if(unsigned_shipments2 >= 1){
-																				//alert('unsigned_shipments >=1');
-																				}else{
-																						localStorage.start = 0;
-																						localStorage.finish = 1;
-																						// To enable the restart --- driver setinterval --- driver_location_interval
-																						localStorage.location_mark = 0;
-																						//-/-----/-//
-																						localStorage.trace = 0;//$('#localstorage_trace').html(0);
-																						clearInterval(location_trace_interval);
-																						cordova.plugins.backgroundMode.disable();
-																						//--ACHTUNG--//
-																						//bgGeo.stop();
-																					};
-																
-													  //-------------------------------
-													
-													  console.log(data);
-													  },
-												  error: function(data){
-													  navigator.notification.alert(
-																				  'There was a problem, Try again',
-																				  alertCallback,
-																				  'Smith TracknGo',
-																				  'Ok');
-													  console.log(data);
+																										localStorage.start = 0;
+																										localStorage.finish = 1;
+																										// To enable the restart --- driver setinterval --- driver_location_interval
+																										localStorage.location_mark = 0;
+																										//-/-----/-//
+																										localStorage.trace = 0;//$('#localstorage_trace').html(0);
+																										clearInterval(location_trace_interval);
+																										cordova.plugins.backgroundMode.disable();
+																										//--ACHTUNG--//
+																										//bgGeo.stop();
+																									};
+																				
+																	  //-------------------------------
+																	
+																	  console.log(data);
+																	  },
+																  error: function(data){
+																	  navigator.notification.alert(
+																								  'There was a problem, Try again',
+																								  alertCallback,
+																								  'Smith TracknGo',
+																								  'Ok');
+																	  console.log(data);
+																	  }
+																  });
+					  //-------------------
+															},
+														error: function(data){
+															//alert('error callcheck for pic 2');
+															},
+														})
+												// -----------End of message to signature saving
 													  }
-												  });
+											  //$.mobile.loading("hide");  
+											  },
+										  error: function(data){
+											  //$.mobile.loading("hide");
+											  }
+									 });
+														//----------------------------------------------------------------------------
+												
 											// ----END OF WIN - FAIL ----- COnsignee save_picture.php --- //	
 				  
 	};
