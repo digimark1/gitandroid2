@@ -904,9 +904,9 @@ function document_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess3(imageURI) {
-					add_shipper_images();
 					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;"  />'});
 					$('#cam_picture').html(imageURI);
+					add_shipper_images();
 					//--- SAVE PICTURE TAKEN -----//
 							var imageURI = $('#cam_picture').html();
 							var options = new FileUploadOptions();
