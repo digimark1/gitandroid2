@@ -879,6 +879,12 @@ function add_shipper_images(){
 															  }
 														  });
 												}
+												
+												function fail1(error) {
+													alert("A1n error has occurred: Code = " + error.code);
+													console.log("upload error source " + error.source);
+													console.log("upload error target " + error.target);
+												}
 	};
 
 function document_take_pic(){
