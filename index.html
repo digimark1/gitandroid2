@@ -859,7 +859,7 @@ function add_shipper_images(){
 														  type: 'POST',
 														  async: true,
 														  data:{pages_shipper:localStorage.shipper_counter,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:'Shipper Document'},
-														  url: ''+localStorage.save_url+'/shipper_page_number.php',
+														  url: ''+localStorage.save_url+'/shipper_page_number_add.php',
 														  success: function(data){
 															  navigator.notification.alert(
 																						  'Additional picture has been sent to the manager',
