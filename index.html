@@ -829,7 +829,7 @@ function add_shipper_images(){
 						ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win1, fail1, options);
 						
 						           function win1(r) {
-													  alert('win1');
+													  //alert('win1');
 													  $('#cam_picture').html('');
 													  //---- POP UP SHIPPER -----//
 													  //localStorage.save_shipper_bol = '/save_shipper_page.php';
@@ -861,11 +861,11 @@ function add_shipper_images(){
 														  data:{pages_shipper:localStorage.shipper_counter,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:'Shipper Document'},
 														  url: ''+localStorage.save_url+'/shipper_page_number_add.php',
 														  success: function(data){
-															  navigator.notification.alert(
+															 /* navigator.notification.alert(
 																						  'Additional picture has been sent to the manager',
 																						  alertCallback,
 																						  'Smith TracknGo',
-																						  'Ok');
+																						  'Ok');*/
 																localStorage.origin_sign = 1;
 															  console.log(data);
 															  },
