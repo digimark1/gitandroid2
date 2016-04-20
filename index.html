@@ -2198,33 +2198,33 @@ function update_shipments_load(load_id){
 									//alert('bol number number');
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[k].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+$('#load_number_hid').html());
-											if(data[k].special_instructions != null){
-											     $('#special_instructions_text').html(data[k].special_instructions);
-											};
-											if(data[k].company_name != null){
-												 $('#company1').html(data[k].company_name);
+												if(data[k].special_instructions != null){
+													 $('#special_instructions_text').html(data[k].special_instructions);
 												};
-											if(data[k].company_name2 != null){
-												 $('#company2').html(data[k].company_name2);
-												};
-											if(data[k].pickup_time != null){
-												 $('#op_time_pk').html(data[k].pickup_time);
-												};
-											if(data[k].drop_time != null){
-												 $('#op_time_dp').html(data[k].drop_time);
-												};
-											if(data[k].reference != null){
-												 $('#reference1').html(data[k].reference);
-												};
-											if(data[k].reference2 != null){
-												 $('#reference2').html(data[k].reference2);
-												};
-											if(data[k].pickup_number != null){
-												 $('#pickup_number').html(data[k].pickup_number);
-												};
-											if(data[k].drop_number != null){
-												 $('#drop_number').html(data[k].drop_number);
-												};
+												if(data[k].company_name != null){
+													   $('#company1').html(data[k].company_name);
+													};
+												if(data[k].company_name2 != null){
+													   $('#company2').html(data[k].company_name2);
+													};
+												if(data[k].pickup_time != null){
+													   $('#op_time_pk').html(data[k].pickup_time);
+													};
+												if(data[k].drop_time != null){
+													   $('#op_time_dp').html(data[k].drop_time);
+													};
+												if(data[k].reference != null){
+													   $('#reference1').html(data[k].reference);
+													};
+												if(data[k].reference2 != null){
+													   $('#reference2').html(data[k].reference2);
+													};
+												if(data[k].pickup_number != null){
+													   $('#pickup_number').html(data[k].pickup_number);
+													};
+												if(data[k].drop_number != null){
+													   $('#drop_number').html(data[k].drop_number);
+													};
 									//alert('bol number number-2');
 											$('#shipper_photos').html('');
 											$('#shp_sig_options').html('');
