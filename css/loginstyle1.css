@@ -1,6 +1,11 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#special_link, #special_link2{
+	text-decoration:none;
+	color:blue;
+	font-weight:500
+	}
 #shp_sig_options, #cs_sig_options{
 	line-height:2;}
 #aditional_documents{

@@ -516,11 +516,15 @@
                      <div id="shipper_title">SHIPPER</div>
                       <div id="pick_div_text">
                          <p><span id="pick_location_title">PickUp Address: </span><span id="pickup_text">Address</span></p>
+                         <p>Operations time: <span id="op_time_pk">this is a test for operations time</span></p>
                          <p><a style="color:blue; font-weight:500" onClick="location.href=localStorage.pick_address" target="_system">View in maps</a></p>
                       </div>
                       <div id="pick_div_im">
                            <div id="shipper_table">
                                 <div id="shipper_take_picture" onClick="shipper_take_pic()"><img width="100%" src="css/for_pickup.png" /></div>
+                                <div>Company:&nbsp;<span id="company1"></span></div>
+                                <div>Ref:&nbsp;<span id="reference1"></span></div>
+                                <div>Pickup #:&nbsp;<span id="pickup_number"></span></div>
                                 <!-- <div id="shipper_add_signature" onClick="shipper_add_sig()"><a href="#choose_signature_shipper" data-rel="popup" data-position-to="window"><img width="100%" src="css/add_signature.png" /></a></div> -->
                                <!-- <div id="shipper_wrapper">
                                 	 <div id="expand_shipper"><b>&nbsp; - </b>Shipper BOL</div>
@@ -531,14 +535,19 @@
                       </div>
                    </div>
                    <div id="drop_div">
+                    <a href="#view_special_instructions" data-rel="popup" data-position-to="window" id="special_link2">Special Instructions</a>
                    <div id="consignee_title">CONSIGNEE</div>
                       <div id="drop_div_text">
                           <p><span id="drop_location_title">Delivery Address: </span><span id="drop_text">Address</span></p>
+                          <p>Operations time: <span id="op_time_dp">this is a test for operations time</span></p>
                           <p><a style="color:blue; font-weight:500" onClick="location.href=localStorage.drop_address" target="_system">View in maps</a></p>
                        </div>
                        <div id="drop_div_text">
                        <div id="consignee_table">
                              <div id="consignee_take_picture" onClick="consignee_take_pic()"><img width="100%" src="css/for_delivery.png" /></div>
+                             <div>Company:&nbsp;<span id="company2"></span></div>
+                              <div>Ref:&nbsp;<span id="reference2"></span></div>
+                               <div>Drop #:&nbsp;<span id="drop_number"></span></div>
                              <!--<div id="consignee_add_signature" onClick="consignee_add_sig()"><a href="#choose_signature_consignee" data-rel="popup" data-position-to="window"><img width="100%" src="css/add_signature.png" /></a></div>-->
                              <!--<div id="consignee_wrapper">
                                  <div id="expand_consignee"><b>&nbsp; - </b>Consignee BOL</div>
@@ -549,7 +558,7 @@
                       </div>
                     </div>
                 </div>
-                
+                <a href="#view_special_instructions" data-rel="popup" data-position-to="window" id="special_link">Special Instructions</a>
                 <div id="additional_documents">
                  <div id="documents_title">DOCUMENTS</div>
                      <div id="document_options">
@@ -584,17 +593,18 @@
                 </div>
                 
                 <!-- POP UP for adding signature SHIPPER-->
-                <div data-role="popup" data-overlay-theme="b" id="choose_signature_shipper" class="ui-content" data-theme="a">
-                    <div id="shp_sig_title">Special Instructions :</div>
-                    <div><a style="color:blue; font-weight:600; line-height:2" href="">-Special Instructions</a></div>
-                    <div id="shp_sig_options"></div>
+                <div data-role="popup" data-overlay-theme="b" id="view_special_instructions" class="ui-content" data-theme="a">
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                    <div id="special_title">Special Instructions :</div>
+                    <div><a style="color:blue; font-weight:600; line-height:2" href="">-</a></div>
+                    <div id="special_instructions_text"></div>
                 </div>
                   <!-- POP UP for adding signature CONSIGNEE -->
-                <div data-role="popup" data-overlay-theme="b" id="choose_signature_consignee" class="ui-content" data-theme="a">
+               <!-- <div data-role="popup" data-overlay-theme="b" id="choose_signature_consignee" class="ui-content" data-theme="a">
                       <div id="cs_sig_title">Special Instructions :</div>
                       <div><a style="color:blue; font-weight:600; line-height:2" href="">-Special Instructions</a></div>
                     <div id="cs_sig_options"></div>
-                </div>
+                </div>-->
        </div>
 <script>
 function shipper_add_sig(){
@@ -2188,6 +2198,33 @@ function update_shipments_load(load_id){
 									//alert('bol number number');
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[k].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+$('#load_number_hid').html());
+											if(data[k].special_instructions != null){
+											     $('#special_instructions_text').html(data[k].special_instructions);
+											};
+											if(data[k].company_name != null){
+												 $('#company1').html(data[k].company_name);
+												};
+											if(data[k].company_name2 != null){
+												 $('#company2').html(data[k].company_name2);
+												};
+											if(data[k].pickup_time != null){
+												 $('#op_time_pk').html(data[k].pickup_time);
+												};
+											if(data[k].drop_time != null){
+												 $('#op_time_dp').html(data[k].drop_time);
+												};
+											if(data[k].reference != null){
+												 $('#reference1').html(data[k].reference);
+												};
+											if(data[k].reference2 != null){
+												 $('#reference2').html(data[k].reference2);
+												};
+											if(data[k].pickup_number != null){
+												 $('#pickup_number').html(data[k].pickup_number);
+												};
+											if(data[k].drop_number != null){
+												 $('#drop_number').html(data[k].drop_number);
+												};
 									//alert('bol number number-2');
 											$('#shipper_photos').html('');
 											$('#shp_sig_options').html('');
