@@ -1,6 +1,12 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#links1, #links2 {
+	width:100%;
+	}
+#links1 td, #links2 td{
+	width:50%;
+	}
 #special_link, #special_link2{
 	text-decoration:none;
 	color:blue;
