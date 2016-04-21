@@ -315,7 +315,7 @@
 														localStorage.load_id_bol = data[i].idts_load;
 														$('#load_number_hid').html(data[i].load_number);
 														localStorage.load_number = data[i].load_number;
-														view_bol();
+														//view_bol();
 														start_chat();
 													}
 												}
@@ -2451,13 +2451,13 @@ function update_shipments_load(load_id){
 		$('#select_new_document-button').css('width','100%');
 		//$('#middle_number').html('1');
 		$('#doc_options').css('display','none');
-		$('#bol_image').hide();
+		//$('#bol_image').hide();
 		//HIDE picture buttons
 		// HIDE directions
 		$('#pick_drop').show();
 		// Starts save pic button hidden //
 		// Avoid allowing signatures on messages
-		view_bol();
+		//view_bol();
 				
 		//load_details_unchange($('#load_hid').html(), localStorage.load_id_bol);
 		$('#back4').show();
