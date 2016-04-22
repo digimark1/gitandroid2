@@ -344,6 +344,7 @@
 								  setTimeout(function(){
 									location.href = "#page4";
 									localStorage.chat_phone_off = 1;
+									localStorage.bol_redirect = 1;
 							      },0) 
 								 
 								} ;
@@ -2363,7 +2364,11 @@ function update_shipments_load(load_id){
                             }})
                        
                       //return false;
-					  location.href = "#page2_5";
+					  if(localStorage.bol_redirect == 1){
+						  }else{
+					      location.href = "#page2_5";
+					  };
+					  localStorage.bol_redirect = 0;
                 };
 						  
 //----------------------END OF   Map, Distance , Time ------------------------------
@@ -2475,6 +2480,7 @@ function update_shipments_load(load_id){
 	$('#page2_5').on('pageshow',function(e,data) {
 		localStorage.counter_photo1 = 0;
 		localStorage.counter_photo2 = 0;
+		localStorage.bol_redirect = 0;
 		$('#select_new_document-button').css('font-size','14px');
 		$('#select_new_document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
 		$('#select_new_document-button').css('padding','5px');
