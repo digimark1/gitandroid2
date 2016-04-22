@@ -165,10 +165,16 @@
 						//alert('device ready for app use');
 						if(localStorage.location_mark == 1){
 						        localStorage.location_mark = 0;
-								location.href='#page1_1';
+								if(localStorage.chat_phone_off == 1){}else{
+								 location.href='#page1_1';
+								 localStorage.chat_phone_off == 0;
+								}
 								$.mobile.loading("hide");
 							}else{
-								location.href='#page1_1';
+								if(localStorage.chat_phone_off == 1){}else{
+								 location.href='#page1_1';
+								 localStorage.chat_phone_off == 0;
+								}
 								$.mobile.loading("hide");
 								};
 						if(localStorage.finish == 0){
@@ -185,7 +191,10 @@
 										}else{
 											//alert('local notification 0');
 										  localStorage.tobecontinued = 0;
-										  location.href='#page1_1';
+										  if(localStorage.chat_phone_off == 1){}else{
+											 location.href='#page1_1';
+											 localStorage.chat_phone_off == 0;
+											};
 										  $.mobile.loading("hide");
 										}
 										localStorage.notification = 0;
@@ -294,7 +303,7 @@
 								};
 							 //----END UPDATE-----//
 							
-							 //---- MESSAGE LOAD # ---
+							 //---- MESSAGE JOB # ---
 							
 							if(load_sub == "Msg load #" ){
 								$("#image_source").attr('src','css/loading2.gif');
@@ -323,11 +332,12 @@
 										})
 								  setTimeout(function(){
 									location.href = "#page4";
+									localStorage.chat_phone_off = 1;
 							      },100) 
 								 
 								} ;
 							 
-							 //---- LOAD #
+							 //---- JOB #
 							if (load_sub == "New load #"){
 								var load_sub_split = load_str.split("-");
 								var load_number = parseFloat(load_sub_split[0].substring(10));
@@ -1506,9 +1516,9 @@ $('#div_document_name').click(function(){
 											console.log(data);
 											active_loads_number = 0;
 											$("#lol_item").html("");
-											$("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
+											$("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> JOB # </th><th width="33%"> SHIPMENTS </th></tr>');
 											$("#lol_item_inactive").html("");
-											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
+											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> JOB # </th><th width="33%"> SHIPMENTS </th></tr>');
 											if(localStorage.inactive == 1){
 												     $('#lol_item').hide();
 												}else{
@@ -1630,9 +1640,9 @@ $('#div_document_name').click(function(){
 											console.log(data);
 											active_loads_number = 0;
 											$("#lol_item").html("");
-											$("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
+											$("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> JOB # </th><th width="33%"> SHIPMENTS </th></tr>');
 											$("#lol_item_inactive").html("");
-											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
+											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> JOB # </th><th width="33%"> SHIPMENTS </th></tr>');
 											if(localStorage.inactive == 1){
 												     $('#lol_item').hide();
 												}else{
@@ -1770,7 +1780,7 @@ localStorage.comma = "'";
 	                                console.log(data);
 									//active_loads_number = 0;
 									//Load's number to guide the user. BOL's with current load number.
-									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+									$("#load_shipment, #load_shipment1, #load_shipment4").html(" JOB # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
 								    $("#lol_item_shipment").html("");
 								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");
@@ -1875,8 +1885,8 @@ localStorage.comma = "'";
 														console.log(data);
 														//active_loads_number = 0;
 														//Load's number to guide the user. BOL's with current load number.
-														$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
-														$('#header_load_number2').html("LOAD # :"+$('#load_number_hid').html());
+														$("#load_shipment, #load_shipment1, #load_shipment4").html(" JOB # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+														$('#header_load_number2').html("JOB # :"+$('#load_number_hid').html());
 														$("#lol_item_shipment").html("");
 														$("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 														$("#lol_item_shipment_inactive").html("");
@@ -1981,8 +1991,8 @@ localStorage.comma = "'";
 	                                console.log(data);
 									//active_loads_number = 0;
 									//Load's number to guide the user. BOL's with current load number.
-									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
-								    $('#header_load_number2').html("LOAD # :"+$('#load_number_hid').html());
+									$("#load_shipment, #load_shipment1, #load_shipment4").html(" JOB # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+								    $('#header_load_number2').html("JOB # :"+$('#load_number_hid').html());
 								    $("#lol_item_shipment").html("");
 								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");
@@ -2045,8 +2055,8 @@ function update_shipments_load(load_id){
 	                                console.log(data);
 									//active_loads_number = 0;
 									//Load's number to guide the user. BOL's with current load number.
-									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
-									$('#header_load_number2').html("LOAD # :"+localStorage.load_number);
+									$("#load_shipment, #load_shipment1, #load_shipment4").html(" JOB # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+									$('#header_load_number2').html("JOB # :"+localStorage.load_number);
 								    $("#lol_item_shipment").html("");
 								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");
@@ -2205,7 +2215,7 @@ function update_shipments_load(load_id){
 									       localStorage.shipment_id = data[k].idshipment;
 									//alert('bol number number');
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[k].bol_number+'</a>');
-											$('#header_load_number').html("LOAD # :"+$('#load_number_hid').html());
+											$('#header_load_number').html("JOB # :"+$('#load_number_hid').html());
 												if(data[k].special_instructions != null){
 													 $('#special_instructions_text').html(data[k].special_instructions);
 												};
@@ -2383,7 +2393,7 @@ function update_shipments_load(load_id){
 			//localStorage.bol = 0;
 			$('#message_button').show();
 			$('#loading_message').hide();
-			$('#header_message').html('LOAD #: '+'<a id="bol4" href="#" x-apple-data-detectors="false">'+localStorage.load_number+'</a>');
+			$('#header_message').html('JOB #: '+'<a id="bol4" href="#" x-apple-data-detectors="false">'+localStorage.load_number+'</a>');
 		
 		$('#clear_message').click(function(){
 			$('#troubles_msg').val('')
