@@ -168,6 +168,7 @@
 								if(localStorage.chat_phone_off == 1){
 									localStorage.chat_back = 1;
 									}else{
+										alert('1');
 								 location.href='#page1_1';
 								}
 								localStorage.chat_phone_off = 0;
@@ -176,6 +177,7 @@
 								if(localStorage.chat_phone_off == 1){
 									localStorage.chat_back = 1;
 									}else{
+										alert('2');
 								 location.href='#page1_1';
 								}
 								localStorage.chat_phone_off = 0;
@@ -198,6 +200,7 @@
 										  if(localStorage.chat_phone_off == 1){
 											  localStorage.chat_back = 1;
 											  }else{
+												  alert('3');
 											 location.href='#page1_1';
 											};
 										  localStorage.chat_phone_off = 0;
@@ -339,7 +342,7 @@
 								  setTimeout(function(){
 									location.href = "#page4";
 									localStorage.chat_phone_off = 1;
-							      },100) 
+							      },0) 
 								 
 								} ;
 							 
