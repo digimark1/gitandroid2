@@ -166,21 +166,19 @@
 						if(localStorage.location_mark == 1){
 						        localStorage.location_mark = 0;
 								if(localStorage.chat_phone_off == 1){
-									localStorage.chat_phone_off = 0;
 									localStorage.chat_back = 1;
 									}else{
 								 location.href='#page1_1';
-								 localStorage.chat_phone_off == 0;
 								}
+								localStorage.chat_phone_off = 0;
 								$.mobile.loading("hide");
 							}else{
 								if(localStorage.chat_phone_off == 1){
-									localStorage.chat_phone_off = 0;
 									localStorage.chat_back = 1;
 									}else{
 								 location.href='#page1_1';
-								 localStorage.chat_phone_off = 0;
 								}
+								localStorage.chat_phone_off = 0;
 								$.mobile.loading("hide");
 								};
 						if(localStorage.finish == 0){
@@ -198,12 +196,11 @@
 											//alert('local notification 0');
 										  localStorage.tobecontinued = 0;
 										  if(localStorage.chat_phone_off == 1){
-											  localStorage.chat_phone_off = 0;
 											  localStorage.chat_back = 1;
 											  }else{
 											 location.href='#page1_1';
-											 localStorage.chat_phone_off = 0;
 											};
+										  localStorage.chat_phone_off = 0;
 										  $.mobile.loading("hide");
 										}
 										localStorage.notification = 0;
