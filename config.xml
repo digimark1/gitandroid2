@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.leanlocation.staffing"
-		versionCode = "56"
+		versionCode = "57"
         version   = "1.4.0">
 
     <name>Smith-Cargo Trackn'Go v1.1</name>
